@@ -47,13 +47,13 @@ namespace SurveyApi.Repository
                 .Include(s => s.Questions)
                 .ThenInclude(q => q.Options)
                 .FirstOrDefaultAsync(c => c.Id == surveyId);
-            
+
             if (entity == null)
             {
                 // handle null case in service level.
                 return new SurveyDto();
             }
-            
+
             var result = _map.Map<Survey, SurveyDto>(entity);
             return result;
         }
@@ -72,6 +72,7 @@ namespace SurveyApi.Repository
                 // handle null case in service level.
                 return new SurveyDto();
             }
+
             var result = _map.Map<Survey, SurveyDto>(entity);
             return result;
         }
@@ -178,6 +179,25 @@ namespace SurveyApi.Repository
             }
 
             return null;
+        }
+
+        public async Task<AnswerDto> GetAnswerById(Guid answerId)
+        {
+            var entity = await _context.Answers
+                .Include(a => a.QuestionAnsers)
+                .FirstOrDefaultAsync(a => a.Id == answerId);
+            var dto = _map.Map<Answer, AnswerDto>(entity);
+
+            return dto;
+        }
+
+        public async Task<AnswerDto> AddAnswer(AnswerDto answer)
+        {
+            var entity = _map.Map<AnswerDto, Answer>(answer);
+            var created = await _context.Answers.AddAsync(entity);
+            await _context.SaveChangesAsync();
+            var dto = _map.Map<Answer, AnswerDto>(created.Entity);
+            return dto;
         }
     }
 }

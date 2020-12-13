@@ -19,6 +19,10 @@ namespace SurveyApi.Models
             CreateMap<OptionDto, Option>();
             CreateMap<UserDto, User>();
             CreateMap<User, UserDto>();
+            CreateMap<AnswerDto, Answer>();
+            CreateMap<Answer, AnswerDto>();
+            CreateMap<QuestionAnswer, QuestionAnswerDto>();
+            CreateMap<QuestionAnswerDto, QuestionAnswer>();
         }
     }
 }

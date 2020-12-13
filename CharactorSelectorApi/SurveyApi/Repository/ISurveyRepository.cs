@@ -24,5 +24,9 @@ namespace SurveyApi.Repository
         Task<List<QuestionDto>> GetQuestionsBySurveyId(Guid surveyId);
         Task<bool> CreateQuestions(List<OptionDto> newOptions);
         Task<OptionDto> UpdateQuestion(OptionDto option);
+        
+        // Answers
+        Task<AnswerDto> GetAnswerById(Guid answerId);
+        Task<AnswerDto> AddAnswer(AnswerDto answer);
     }
 }

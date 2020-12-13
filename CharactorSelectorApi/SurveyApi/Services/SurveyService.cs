@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using SurveyApi.Models.Dtos;
@@ -66,24 +65,31 @@ namespace SurveyApi.Services
             return null;
         }
 
+        /// <summary>
+        /// Get Answer By AnserId
+        /// </summary>
+        /// <param name="answerId"></param>
+        /// <returns></returns>
         public async Task<AnswerDto> GetAnswerById(Guid answerId)
         {
-            throw new NotImplementedException();
-        }
+            var result = await _repo.GetAnswerById(answerId);
 
-        public async Task<AnswerDto> AddAnswer(AnswerDto answer)
-        {
-            throw new NotImplementedException();
+            return result;
         }
 
         /// <summary>
-        ///     Get Options By surveyId
+        /// Add new Answer
         /// </summary>
-        /// <param name="surveyId"></param>
+        /// <remarks>
+        /// The questions answers should be structured in the input object.
+        /// </remarks>
+        /// <param name="answer"></param>
         /// <returns></returns>
-        public async Task<List<QuestionDto>> GetQuestionsBySurveyId(Guid surveyId)
+        public async Task<AnswerDto> AddAnswer(AnswerDto answer)
         {
-            return await _repo.GetQuestionsBySurveyId(surveyId);
+            var result = await _repo.AddAnswer(answer);
+
+            return result;
         }
     }
 }

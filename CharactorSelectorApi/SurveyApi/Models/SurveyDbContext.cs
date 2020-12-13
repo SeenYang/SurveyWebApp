@@ -14,6 +14,7 @@ namespace SurveyApi.Models
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<Option> Options { get; set; }
         public virtual DbSet<Answer> Answers { get; set; }
+        public virtual DbSet<QuestionAnswer> QuestionAnsers { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,6 +38,13 @@ namespace SurveyApi.Models
             
             modelBuilder.Entity<Answer>()
                 .HasKey(u => u.Id);
+            
+            modelBuilder.Entity<QuestionAnswer>()
+                .HasKey(qa => new {qa.QuestionId, qa.AnswerId});
+            modelBuilder.Entity<QuestionAnswer>()
+                .HasOne(qa => qa.Answer)
+                .WithMany(a => a.QuestionAnsers);
+            
             modelBuilder.Entity<User>()
                 .HasKey(u => u.Id);
             
