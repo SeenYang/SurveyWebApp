@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using CharactorSelectorApi.Models;
-using CharactorSelectorApi.Models.Entities;
-using CharactorSelectorApi.Repository;
+using SurveyApi.Models;
+using SurveyApi.Models.Entities;
+using SurveyApi.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MockQueryable.Moq;
@@ -16,26 +16,26 @@ namespace CharacterSelectorApi.Tests
     public class CharacterRepository_GetCharacterById_Tests
     {
         private readonly Mock<ChracterSelectorContext> _context;
-        private readonly Mock<ILogger<CharacterRepository>> _logger;
+        private readonly Mock<ILogger<SurveyRepository>> _logger;
         private readonly IMapper _map;
-        private readonly ICharacterRepository _repo;
+        private readonly ISurveyRepository _repo;
 
         public CharacterRepository_GetCharacterById_Tests()
         {
             _context = new Mock<ChracterSelectorContext>(new DbContextOptions<ChracterSelectorContext>());
-            _logger = new Mock<ILogger<CharacterRepository>>();
+            _logger = new Mock<ILogger<SurveyRepository>>();
             var mapper = new MapperConfiguration(c => { c.AddProfile(typeof(AutoMapperProfile)); });
             _map = mapper.CreateMapper();
-            _repo = new CharacterRepository(_context.Object, _map, _logger.Object);
+            _repo = new SurveyRepository(_context.Object, _map, _logger.Object);
         }
 
         [Fact(DisplayName = "Get Character by Id, not include options, return character only")]
         public async void Test1()
         {
             var characterId = Guid.NewGuid();
-            var characterList = new List<Character>
+            var characterList = new List<Survey>
             {
-                new Character {Id = characterId, Name = "fake character"}
+                new Survey {Id = characterId, Name = "fake character"}
             }.AsQueryable().BuildMockDbSet();
             _context.Setup(m => m.Characters).Returns(characterList.Object);
 
@@ -44,13 +44,13 @@ namespace CharacterSelectorApi.Tests
                 new Option
                 {
                     Id = Guid.NewGuid(),
-                    Name = "fake option",
+                    Text = "fake option",
                     CharacterId = characterId
                 }
             }.AsQueryable().BuildMockDbSet();
             _context.Setup(m => m.Options).Returns(optionList.Object);
 
-            var result = await _repo.GetCharacterById(characterId, false);
+            var result = await _repo.GetSurveyById(characterId, false);
 
             Assert.NotNull(result);
             Assert.Equal(characterId, result.Id);
@@ -61,9 +61,9 @@ namespace CharacterSelectorApi.Tests
         public async void Test2()
         {
             var characterId = Guid.NewGuid();
-            var characterList = new List<Character>
+            var characterList = new List<Survey>
             {
-                new Character {Id = characterId, Name = "fake character"}
+                new Survey {Id = characterId, Name = "fake character"}
             }.AsQueryable().BuildMockDbSet();
             _context.Setup(m => m.Characters).Returns(characterList.Object);
 
@@ -72,13 +72,13 @@ namespace CharacterSelectorApi.Tests
                 new Option
                 {
                     Id = Guid.NewGuid(),
-                    Name = "fake option",
+                    Text = "fake option",
                     CharacterId = characterId
                 }
             }.AsQueryable().BuildMockDbSet();
             _context.Setup(m => m.Options).Returns(optionList.Object);
 
-            var result = await _repo.GetCharacterById(characterId);
+            var result = await _repo.GetSurveyById(characterId);
 
             Assert.NotNull(result);
             Assert.Equal(characterId, result.Id);

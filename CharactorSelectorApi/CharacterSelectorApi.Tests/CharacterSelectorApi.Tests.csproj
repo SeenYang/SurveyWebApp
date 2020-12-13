@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CharactorSelectorApi\CharactorSelectorApi.csproj" />
+    <ProjectReference Include="..\SurceyApi\SurceyApi.csproj" />
   </ItemGroup>
 
 </Project>
