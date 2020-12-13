@@ -3,5 +3,8 @@ CharactorSelectorApi/.idea/
 CharactorSelectorApi/.idea/**
 CharactorSelectorApi/bin/
 CharactorSelectorApi/obj/
-CharactorSelectorApi/CharacterSelectorApi.Tests/obj/
-CharactorSelectorApi/CharacterSelectorApi.Tests/bin/
+CharactorSelectorApi/SurveyApi.Tests/obj/
+CharactorSelectorApi/SurveyApi.Tests/bin/
+CharactorSelectorApi/SurveyApi/obj/
+CharactorSelectorApi/SurveyApi/bin/
+
