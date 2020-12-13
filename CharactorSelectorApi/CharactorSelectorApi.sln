@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurveyApi", "SurveyApi\SurveyApi.csproj", "{1AC3E9DB-A856-43B0-A392-985CBF1AF935}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterSelectorApi.Tests", "CharacterSelectorApi.Tests\CharacterSelectorApi.Tests.csproj", "{2C4A082D-C72F-4F2B-A9BA-86C325C13446}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurveyApi.Tests", "SurveyApi.Tests\SurveyApi.Tests.csproj", "{2C4A082D-C72F-4F2B-A9BA-86C325C13446}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

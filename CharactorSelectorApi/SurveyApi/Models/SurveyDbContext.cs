@@ -3,9 +3,9 @@ using SurveyApi.Models.Entities;
 
 namespace SurveyApi.Models
 {
-    public class ChracterSelectorContext : DbContext
+    public class SurveyDbContext : DbContext
     {
-        public ChracterSelectorContext(DbContextOptions<ChracterSelectorContext> options)
+        public SurveyDbContext(DbContextOptions<SurveyDbContext> options)
             : base(options)
         {
         }

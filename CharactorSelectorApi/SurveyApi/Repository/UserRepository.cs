@@ -11,11 +11,11 @@ namespace SurveyApi.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly ChracterSelectorContext _context;
+        private readonly SurveyDbContext _context;
         private readonly ILogger<UserRepository> _logger;
         private readonly IMapper _map;
 
-        public UserRepository(ChracterSelectorContext context, IMapper map, ILogger<UserRepository> logger)
+        public UserRepository(SurveyDbContext context, IMapper map, ILogger<UserRepository> logger)
         {
             _context = context;
             _map = map;

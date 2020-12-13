@@ -45,7 +45,7 @@ namespace SurveyApi
             services.AddAutoMapper(typeof(AutoMapperProfile));
             services.AddControllers();
             // Using DBContextPool for reusing connection, which could enhance concurrency capability.
-            services.AddDbContextPool<ChracterSelectorContext>(options =>
+            services.AddDbContextPool<SurveyDbContext>(options =>
                     options.UseInMemoryDatabase("InMemoryDB")
                 // todo:
                 // AppSettings.json can hold multiple env config, and put parameter store/secret manager for security concern.

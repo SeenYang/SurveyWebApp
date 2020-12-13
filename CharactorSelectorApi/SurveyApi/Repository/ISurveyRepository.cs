@@ -7,7 +7,7 @@ namespace SurveyApi.Repository
 {
     public interface ISurveyRepository
     {
-        // Character
+        // Survey
         Task<List<SurveyDto>> GetAllSurveys();
         Task<SurveyDto> GetSurveyById(Guid surveyId, bool includeOption = true);
         /// <summary>
@@ -21,7 +21,7 @@ namespace SurveyApi.Repository
         Task<SurveyDto> UpdateSurvey(SurveyDto survey);
         
         // Options
-        Task<List<QuestionDto>> GetQuestionsBySurveyId(Guid characterId);
+        Task<List<QuestionDto>> GetQuestionsBySurveyId(Guid surveyId);
         Task<bool> CreateQuestions(List<OptionDto> newOptions);
         Task<OptionDto> UpdateQuestion(OptionDto option);
     }

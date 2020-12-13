@@ -12,8 +12,8 @@ namespace SurveyApi.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using var context = new ChracterSelectorContext(
-                serviceProvider.GetRequiredService<DbContextOptions<ChracterSelectorContext>>());
+            using var context = new SurveyDbContext(
+                serviceProvider.GetRequiredService<DbContextOptions<SurveyDbContext>>());
 
             if (context.Surveys.Any() && context.Options.Any() && context.Options.Any()) return;
 

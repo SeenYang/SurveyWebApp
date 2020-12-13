@@ -12,7 +12,7 @@ using SurveyApi.Services;
 namespace SurveyApi.Controllers
 {
     /// <summary>
-    ///     Character Controller
+    ///     Survay Controller
     /// </summary>
     [ApiController]
     [Route("api/[controller]s")]
@@ -22,7 +22,7 @@ namespace SurveyApi.Controllers
         private readonly ISurveyService _service;
 
         /// <summary>
-        ///     Character Controller
+        ///     Survey Controller
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
@@ -33,10 +33,10 @@ namespace SurveyApi.Controllers
         }
 
         /// <summary>
-        ///     Get All Characters
+        ///     Get All Surveys
         /// </summary>
-        /// <returns code="200" cerf="List&lt;CharacterDto&gt;">Success response</returns>
-        /// <returns code="404">Fail to fetch character or not found.</returns>
+        /// <returns code="200" cerf="List&lt;SurveyDto&gt;">Success response</returns>
+        /// <returns code="404">Fail to fetch survey or not found.</returns>
         /// <returns code="500">All other error.</returns>
         [HttpGet("GetAllSurveys")]
         [ProducesResponseType(typeof(int), StatusCodes.Status404NotFound)]
@@ -50,33 +50,33 @@ namespace SurveyApi.Controllers
         }
 
         /// <summary>
-        ///     Get Character By Id
+        ///     Get Survey By Id
         /// </summary>
-        /// <param name="characterId"></param>
+        /// <param name="surveyId"></param>
         /// <returns code="200" cref="SurveyDto">Success get modal by Id</returns>
-        /// <returns code="404" cref="SurveyDto">Fail to fetch character by provided id</returns>
-        [HttpGet("GetSurveyById/{characterId}")]
+        /// <returns code="404" cref="SurveyDto">Fail to fetch survey by provided id</returns>
+        [HttpGet("GetSurveyById/{surveyId}")]
         [ProducesResponseType(typeof(int), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(typeof(SurveyDto), StatusCodes.Status200OK)]
         // [ProducesResponseType(null, 404)]
-        public async Task<IActionResult> GetSurveyById(Guid characterId)
+        public async Task<IActionResult> GetSurveyById(Guid surveyId)
         {
-            if (characterId == Guid.Empty) return BadRequest("Invalid input characterId.");
+            if (surveyId == Guid.Empty) return BadRequest("Invalid input surveyId.");
 
-            var result = await _service.GetSurveyById(characterId);
+            var result = await _service.GetSurveyById(surveyId);
             return result != null ? (IActionResult) Ok(result) : NotFound();
         }
 
         /// <summary>
-        ///     Create new Character.
+        ///     Create new survey.
         /// </summary>
         /// <remarks>
-        ///     Input character's options need to be structured.
+        ///     Input survey's options need to be structured.
         ///     system will automatically generate ids and retains the relationship.
         /// </remarks>
         /// <param name="newSurvey">No Ids need to provide. Ids will be assigned by system.</param>
-        /// <returns code="200">Success created CharacterDto</returns>
+        /// <returns code="200">Success created SurveyDto</returns>
         /// <returns code="400">Modal validation fail or creation fail.</returns>
         /// <returns code="500">All other internal error.</returns>
         [HttpPost("CreateSurvey")]
@@ -96,7 +96,7 @@ namespace SurveyApi.Controllers
             }
 
             var result = await _service.CreateSurvey(newSurvey);
-            return result != null ? (IActionResult) Ok(result) : BadRequest("Fail to create character.");
+            return result != null ? (IActionResult) Ok(result) : BadRequest("Fail to create survey.");
         }
     }
 }

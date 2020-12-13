@@ -8,7 +8,7 @@ namespace SurveyApi.Services
 {
     public interface ISurveyService
     {
-        // Character
+        // Survey
         Task<List<SurveyDto>> GetAllSurveys();
         Task<SurveyDto> GetSurveyById(Guid surveyId);
         Task<SurveyDto> CreateSurvey(SurveyDto newSurvey);

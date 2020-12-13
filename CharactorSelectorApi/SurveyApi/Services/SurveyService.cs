@@ -9,7 +9,7 @@ using SurveyApi.Repository;
 namespace SurveyApi.Services
 {
     /// <summary>
-    ///     This is the service that provide character relevant functions.
+    ///     This is the service that provide survey relevant functions.
     /// </summary>
     public class SurveyService : ISurveyService
     {
@@ -27,7 +27,7 @@ namespace SurveyApi.Services
         }
 
         /// <summary>
-        ///     Get All Characters
+        ///     Get All Surveys
         /// </summary>
         /// <returns></returns>
         public async Task<List<SurveyDto>> GetAllSurveys()
@@ -36,43 +36,33 @@ namespace SurveyApi.Services
         }
 
         /// <summary>
-        ///     Get Character By Id
+        ///     Get Survey By Id
         /// </summary>
-        /// <param name="characterId"></param>
+        /// <param name="surveyId"></param>
         /// <returns></returns>
-        public async Task<SurveyDto> GetSurveyById(Guid characterId)
+        public async Task<SurveyDto> GetSurveyById(Guid surveyId)
         {
-            return await _repo.GetSurveyById(characterId);
+            return await _repo.GetSurveyById(surveyId);
         }
 
         /// <summary>
-        ///     Input character should be structured options.
-        ///     The hierarchy will be flatten and saved.
+        /// Create new Survey
         /// </summary>
-        /// <param name="newSurvey">CharacterDto with structure options.</param>
+        /// <remarks>
+        /// Input survey should be structured. i.e. questions with respective options.
+        /// </remarks>
+        /// <param name="newSurvey">SurveyDto with structure options.</param>
         /// <returns></returns>
         public async Task<SurveyDto> CreateSurvey(SurveyDto newSurvey)
         {
-            // var existing = await _repo.GetSurveyByName(newSurvey.Name);
-            // if (existing == null)
-            // {
-            //     var created = await _repo.CreateSurvey(newSurvey);
-            //     if (newSurvey.Options != null && newSurvey.Options.Any())
-            //     {
-            //         var flatted = InitiateNewOptionList(newSurvey.Options, created.Id);
-            //         var result = await _repo.CreateQuestions(flatted);
-            //         if (!result)
-            //         {
-            //             _logger.LogError($"Fail to create options for character {created.Id}.");
-            //             return null;
-            //         }
-            //     }
-            //
-            //     var returnResult = await _repo.GetSurveyById(created.Id);
-            //     return returnResult;
-            // }
+            var existing = await _repo.GetSurveyByName(newSurvey.Name);
+            if (existing == null || existing.Id == Guid.Empty)
+            {
+                var created = await _repo.CreateSurvey(newSurvey);
+                return created;
+            }
 
-            _logger.LogError("Invalid new character: Name exist.");
+            _logger.LogError("Invalid new survey: Name exist.");
             return null;
         }
 
@@ -87,70 +77,13 @@ namespace SurveyApi.Services
         }
 
         /// <summary>
-        ///     Get Options By CharacterId
+        ///     Get Options By surveyId
         /// </summary>
-        /// <param name="characterId"></param>
+        /// <param name="surveyId"></param>
         /// <returns></returns>
-        public async Task<List<QuestionDto>> GetQuestionsBySurveyId(Guid characterId)
+        public async Task<List<QuestionDto>> GetQuestionsBySurveyId(Guid surveyId)
         {
-            return await _repo.GetQuestionsBySurveyId(characterId);
-        }
-
-        /// <summary>
-        ///     Update Option
-        /// </summary>
-        /// <param name="option"></param>
-        /// <returns></returns>
-        // public async Task<OptionDto> UpdateOption(OptionDto option)
-        // {
-        //     var character = await _repo.GetSurveyById(option., false);
-        //     if (character == null)
-        //     {
-        //         _logger.LogError($"Fail to create new Option: Character {option.CharacterId} can not be found.");
-        //         return null;
-        //     }
-        //
-        //     return await _repo.UpdateQuestion(option);
-        // }
-
-        /// <summary>
-        ///     Taking structured option list, initiate the ids.
-        ///     * New Ids will be generated and assign. Don't need to provide ID.
-        /// </summary>
-        /// <param name="options">Structured Option list</param>
-        /// <param name="characterId"></param>
-        /// <returns></returns>
-        private List<OptionDto> InitiateNewOptionList(List<OptionDto> options, Guid characterId)
-        {
-            var returnList = new List<OptionDto>();
-            // foreach (var option in options)
-            // {
-            //     var optionId = Guid.NewGuid();
-            //     option.Id = optionId;
-            //     option.CharacterId = characterId;
-            //     returnList.Add(option);
-            //     if (option.SubOptions.Any())
-            //         returnList.AddRange(InitiateSubOptions(option.SubOptions, optionId, characterId));
-            // }
-
-            return returnList;
-        }
-
-        private List<OptionDto> InitiateSubOptions(List<OptionDto> subOptions, Guid parentId, Guid characterId)
-        {
-            var returnList = new List<OptionDto>();
-            // foreach (var option in subOptions)
-            // {
-            //     var optionId = Guid.NewGuid();
-            //     option.Id = optionId;
-            //     option.ParentOptionId = parentId;
-            //     option.CharacterId = characterId;
-            //     if (option.SubOptions.Any())
-            //         returnList.AddRange(InitiateSubOptions(option.SubOptions, optionId, characterId));
-            // }
-            //
-            // returnList.AddRange(subOptions);
-            return returnList;
+            return await _repo.GetQuestionsBySurveyId(surveyId);
         }
     }
 }

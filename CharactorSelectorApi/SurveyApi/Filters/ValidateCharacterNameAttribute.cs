@@ -11,7 +11,7 @@ namespace SurveyApi.Filters
     /// <summary>
     ///     Here is the sample filter that could do overriding modal validation, authorization/authentication validation, etc.
     /// </summary>
-    public class ValidateCharacterAttribute : Attribute, IAsyncActionFilter
+    public class ValidateSurveyAttribute : Attribute, IAsyncActionFilter
     {
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {

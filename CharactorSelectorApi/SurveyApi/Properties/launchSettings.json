@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "CharacterSelectorApi": {
+    "SurveyWebApi": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

@@ -9,6 +9,9 @@ using SurveyApi.Services;
 
 namespace SurveyApi.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [ApiController]
     [Route("api/[controller]s")]
     public class AnswerController : ControllerBase
@@ -22,29 +25,33 @@ namespace SurveyApi.Controllers
             _logger = logger;
         }
 
-        [HttpGet("GetOptionsByCharacterId/{characterId}")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="answerId"></param>
+        /// <returns></returns>
+        [HttpGet("GetAnswerById/{answerId}")]
         public async Task<IActionResult> GetAnswerById(Guid answerId)
         {
-            if (answerId == Guid.Empty) return BadRequest("Invalid input characterId.");
+            if (answerId == Guid.Empty) return BadRequest("Invalid input answer id.");
             var result = await _service.GetAnswerById(answerId);
             return result != null ? (IActionResult) Ok(result) : NoContent();
         }
 
         /// <summary>
-        ///     Create new Character.
+        ///     Create new Answer.
         /// </summary>
         /// <remarks>
-        ///     Input character's options need to be structured.
-        ///     system will automatically generate ids and retains the relationship.
+        /// Input object should be hierarchy structure.
+        /// Relationship Ids would be generated and handled properly.
         /// </remarks>
         /// <param name="newAnswer">No Ids need to provide. Ids will be assigned by system.</param>
-        /// <returns code="200">Success created CharacterDto</returns>
+        /// <returns code="200">Success created AnswerDto</returns>
         /// <returns code="400">Modal validation fail or creation fail.</returns>
         /// <returns code="500">All other internal error.</returns>
-        [HttpPost("CreateSurvey")]
         [ProducesResponseType(typeof(int), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(AnswerDto), StatusCodes.Status200OK)]
         [HttpPost("AddAnswer")]
         public async Task<IActionResult> AddAnswer([FromBody] AnswerDto newAnswer)
         {

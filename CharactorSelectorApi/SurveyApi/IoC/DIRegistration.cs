@@ -12,7 +12,6 @@ namespace SurveyApi.IoC
             services.AddScoped<ISurveyRepository, SurveyRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ISurveyService, SurveyService>();
-            services.AddScoped<ICustomiseService, CustomiseService>();
             services.AddScoped<IUserService, UserService>();
         }
     }
