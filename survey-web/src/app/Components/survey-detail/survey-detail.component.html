@@ -1,0 +1,44 @@
+<div *ngIf="survey" class="nes-container">
+    <div class="nes-container  is-dark with-title">
+        <p class="title">CharacterBasic information</p>
+        <div>Name: {{survey.name}}</div>
+        <div>Description: {{survey.description}}</div>
+        <div>ID: {{survey.id}}</div>
+
+        <div class="btn-group">
+            <button class="nes-btn is-error" (click)="back()">Back</button>
+        </div>
+    </div>
+
+    <div class="option-container nes-container with-title">
+        <h4>Questions</h4>
+        <ol>
+            <li *ngFor="let question of survey.questions">
+                <div >
+                    {{question.title}} <br>
+                    {{question.subTitle}}
+                </div>
+
+                <ol>
+                    <li *ngFor="let option of question.options">
+                        <div onclick="selectAnswer()">
+                            {{option.text}} <br>
+                            {{option.description}}
+                        </div>
+                    </li>
+                </ol>
+
+            </li>
+        </ol>
+
+        <div class="btn-group">
+            <button class="nes-btn" (click)="reset()">Reset</button>
+<!--            <button class="nes-btn is-primary "-->
+<!--                    [ngClass]="{'is-disabled': customiseName.trim() == ''}"-->
+<!--                    (click)="save()">Save-->
+<!--            </button>-->
+        </div>
+    </div>
+
+</div>
+

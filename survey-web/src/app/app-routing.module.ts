@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {CharacterDetailComponent} from './Components/character-detail/character-detail.component';
-import {CharacterDashboardComponent} from './Components/character-dashboard/character-dashboard.component';
+import {SurveyDetailComponent} from './Components/survey-detail/survey-detail.component';
+import {SurveyDashboardComponent} from './Components/survey-dashboard/survey-dashboard.component';
 import {CustomiseDetailComponent} from './Components/customise-detail/customise-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: CharacterDashboardComponent },
-  { path: 'character/:id', component: CharacterDetailComponent },
+  { path: 'dashboard', component: SurveyDashboardComponent },
+  { path: 'character/:id', component: SurveyDetailComponent },
   { path: 'customise/:id', component: CustomiseDetailComponent }
 ];
 

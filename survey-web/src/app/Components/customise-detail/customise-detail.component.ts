@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {CharacterService} from '../../Services/character.service';
+import {SurveyService} from '../../Services/survey.service';
 import {MessageService} from '../../Services/message.service';
 import {Location} from '@angular/common';
 import {Customise} from '../../Models/customise';
@@ -14,25 +14,25 @@ export class CustomiseDetailComponent implements OnInit {
 
   constructor(
       private route: ActivatedRoute,
-      private characterService: CharacterService,
+      private characterService: SurveyService,
       private messageService: MessageService,
       private location: Location
   ) { }
 
-  customiseId: string;
-  customise: Customise;
+  answerId: string;
+  // customise: Customise;
 
 
   ngOnInit(): void {
-    this.customiseId = this.route.snapshot.paramMap.get('id');
-    this.getCustomise(this.customiseId);
+    this.answerId = this.route.snapshot.paramMap.get('id');
+    // this.getCustomise(this.customiseId);
   }
 
   getCustomise(id: string): void {
-    this.characterService.getCustomiseById(id)
-        .subscribe(c => {
-          this.customise = c;
-        });
+    // this.characterService.getSurveyById(id)
+    //     .subscribe(c => {
+    //       this.customise = c;
+    //     });
   }
 
   back(): void {

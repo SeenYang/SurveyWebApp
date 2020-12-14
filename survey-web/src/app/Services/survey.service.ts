@@ -3,14 +3,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MessageService} from './message.service';
 import {EMPTY, Observable, of} from 'rxjs';
 import {catchError, mapTo, tap} from 'rxjs/operators';
-import {Character} from '../Models/character';
+import {Survey} from '../Models/survey';
 import {environment as testEnv} from '../../environments/environment';
 import {Customise} from '../Models/customise';
 
 @Injectable({providedIn: 'root'})
-export class CharacterService {
-    private CharacterUrl = `${testEnv.apiPath}/api/Characters`;  // URL to web api
-    private CustomiseUrl = `${testEnv.apiPath}/api/Customises`;  // URL to web api
+export class SurveyService {
+    private surveyUrl = `${testEnv.apiPath}/api/Surveys`;  // URL to web api
+    private answerUrl = `${testEnv.apiPath}/api/Answers`;  // URL to web api
 
     httpOptions = {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -21,24 +21,37 @@ export class CharacterService {
         private messageService: MessageService) {
     }
 
-    getCharacters(): Observable<Character[]> {
-        return this.http.get<Character[]>(`${this.CharacterUrl}/GetAllCharacters/`)
+    getSurveys(): Observable<Survey[]> {
+        return this.http.get<Survey[]>(`${this.surveyUrl}/GetAllSurveys/`)
             .pipe(
-                tap(_ => this.log('Fetch Characters')),
-                catchError(this.handleError<Character[]>('getCharacters', []))
+                tap(_ => this.log('Fetch Survey')),
+                catchError(this.handleError<Survey[]>('GetAllSurveys', []))
             );
     }
 
-    getAllCustomises(): Observable<Customise[]> {
-        return this.http.get<Customise[]>(`${this.CustomiseUrl}/GetAllCustomise/`)
+
+    getSurveyById(surveyId: string): Observable<Survey> {
+        return this.http.get<Survey>(`${this.surveyUrl}/GetSurveyById/${surveyId}`).pipe(
+            tap((x) => {
+                this.log(`found survey matching "${surveyId}"`);
+            }),
+            catchError((error) => {
+                this.handleError<Survey>('getSurveyById', {} as Survey);
+                return EMPTY;
+            })
+        );
+    }
+
+    getAllAnswers(): Observable<Customise[]> {
+        return this.http.get<Customise[]>(`${this.answerUrl}/GetAllCustomise/`)
             .pipe(
                 tap(_ => this.log('Fetch Characters')),
                 catchError(this.handleError<Customise[]>('getAllCustomise', []))
             );
     }
 
-    getCustomiseById(customiseId: string): Observable<Customise> {
-        return this.http.get<Customise>(`${this.CustomiseUrl}/GetCustomiseById/${customiseId}`).pipe(
+    getAnswerById(customiseId: string): Observable<Customise> {
+        return this.http.get<Customise>(`${this.answerUrl}/GetCustomiseById/${customiseId}`).pipe(
             tap((x) => {
                 this.log(`found Customise matching "${customiseId}"`);
             }),
@@ -49,21 +62,9 @@ export class CharacterService {
         );
     }
 
-    getCharactersById(characterId: string): Observable<Character> {
-        return this.http.get<Character>(`${this.CharacterUrl}/GetCharacterById/${characterId}`).pipe(
-            tap((x) => {
-                this.log(`found Characters matching "${characterId}"`);
-            }),
-            catchError((error) => {
-                this.handleError<Character>('getCharactersById', {} as Character);
-                return EMPTY;
-            })
-        );
-    }
-
-    addCustomerCharacter(customise: Customise): Observable<Character> {
-        return this.http.post<Character>(`${this.CustomiseUrl}/CreateCustomerCharacter/`, customise).pipe(
-            tap((newCharacter: Character) => {
+    addAnswer(customise: Customise): Observable<Survey> {
+        return this.http.post<Survey>(`${this.answerUrl}/CreateCustomerCharacter/`, customise).pipe(
+            tap((newCharacter: Survey) => {
                 console.log(`added new Customise Character. w/ id=${newCharacter.id}`);
                 return newCharacter;
             }),

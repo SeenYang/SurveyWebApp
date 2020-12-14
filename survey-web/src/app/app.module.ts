@@ -6,9 +6,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MessagesComponent} from './Components/messages/messages.component';
 import {ENV, getEnv} from '../environments/environment.provider';
-import {CharacterDetailComponent} from './Components/character-detail/character-detail.component';
-import {CharacterDashboardComponent} from './Components/character-dashboard/character-dashboard.component';
+import {SurveyDetailComponent} from './Components/survey-detail/survey-detail.component';
+import {SurveyDashboardComponent} from './Components/survey-dashboard/survey-dashboard.component';
 import { CustomiseDetailComponent } from './Components/customise-detail/customise-detail.component';
+import { QuestionComponent } from './components/question/question.component';
 
 @NgModule({
   imports: [
@@ -29,10 +30,11 @@ import { CustomiseDetailComponent } from './Components/customise-detail/customis
   ],
   declarations: [
     AppComponent,
-    CharacterDetailComponent,
+    SurveyDetailComponent,
     MessagesComponent,
-    CharacterDashboardComponent,
-    CustomiseDetailComponent
+    SurveyDashboardComponent,
+    CustomiseDetailComponent,
+    QuestionComponent
   ],
   bootstrap: [AppComponent]
 })

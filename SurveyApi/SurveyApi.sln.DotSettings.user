@@ -1,0 +1,12 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=534f6b54_002Dfa17_002D49cb_002Db4e1_002D5cd0ed6bf0e6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Add new Survey, name exist, should return null, logger log error" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::2C4A082D-C72F-4F2B-A9BA-86C325C13446::net5.0::CharacterSelectorApi.Tests.SurveyServiceTests.Test1&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::2C4A082D-C72F-4F2B-A9BA-86C325C13446::net5.0::CharacterSelectorApi.Tests.SurveyServiceTests.Test2&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e35a2af3_002Df43a_002D4adc_002D8697_002D4c7bf4787c8d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Add new Survey, name exist, should return null, logger log error #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::2C4A082D-C72F-4F2B-A9BA-86C325C13446::net5.0::CharacterSelectorApi.Tests.SurveyServiceTests.Test1&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
