@@ -1,10 +1,11 @@
 
-CharactorSelectorApi/.idea/
-CharactorSelectorApi/.idea/**
-CharactorSelectorApi/bin/
-CharactorSelectorApi/obj/
-CharactorSelectorApi/SurveyApi.Tests/obj/
-CharactorSelectorApi/SurveyApi.Tests/bin/
-CharactorSelectorApi/SurveyApi/obj/
-CharactorSelectorApi/SurveyApi/bin/
-
+SurveyApi/.idea/
+SurveyApi/.idea/**
+SurveyApi/bin/
+SurveyApi/obj/
+SurveyApi/SurveyApi.Tests/obj/
+SurveyApi/SurveyApi.Tests/bin/
+SurveyApi/SurveyApi/obj/
+SurveyApi/SurveyApi/bin/
+survey-web/node_modules/
+.DS_Store
