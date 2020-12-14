@@ -9,3 +9,4 @@ SurveyApi/SurveyApi/obj/
 SurveyApi/SurveyApi/bin/
 survey-web/node_modules/
 .DS_Store
+survey-web/.idea/workspace.xml
