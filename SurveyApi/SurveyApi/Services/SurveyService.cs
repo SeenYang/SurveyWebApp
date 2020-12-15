@@ -87,7 +87,15 @@ namespace SurveyApi.Services
         /// <returns></returns>
         public async Task<AnswerDto> AddAnswer(AnswerDto answer)
         {
+            answer.CreatedDateUtc = DateTime.UtcNow;
             var result = await _repo.AddAnswer(answer);
+
+            return result;
+        }
+
+        public async Task<List<AnswerDto>> GetAllAnswers()
+        {
+            var result = await _repo.GetAllAnswers();
 
             return result;
         }

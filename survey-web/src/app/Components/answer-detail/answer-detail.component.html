@@ -1,0 +1,19 @@
+<div *ngIf="answer" class="nes-container">
+  <div class="nes-container  is-dark with-title">
+    <p class="title">Answer information</p>
+    <div>Created Date: {{answer.createdDateUtc}}</div>
+    <div>User ID: {{answer.userId}}</div>
+    <div>Answer Reference Id: {{answer.id}}</div>
+
+    <ul>
+      <li *ngFor="let a of answer.questionAnswers">
+        <div>Question Id: {{a.questionId}} - Option Id: {{a.optionId}}</div>
+      </li>
+    </ul>
+
+
+    <div class="btn-group">
+      <button class="nes-btn is-error" (click)="back()">Back</button>
+    </div>
+  </div>
+</div>

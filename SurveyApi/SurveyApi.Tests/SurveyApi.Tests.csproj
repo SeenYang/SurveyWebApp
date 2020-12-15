@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SurceyApi\SurceyApi.csproj" />
     <ProjectReference Include="..\SurveyApi\SurveyApi.csproj" />
   </ItemGroup>
 

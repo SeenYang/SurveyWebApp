@@ -1,44 +1,46 @@
 <div *ngIf="survey" class="nes-container">
-    <div class="nes-container  is-dark with-title">
-        <p class="title">CharacterBasic information</p>
-        <div>Name: {{survey.name}}</div>
-        <div>Description: {{survey.description}}</div>
-        <div>ID: {{survey.id}}</div>
+  <div class="nes-container  is-dark with-title">
+    <p class="title">Survey information</p>
+    <div>Name: {{survey.name}}</div>
+    <div>Description: {{survey.description}}</div>
+    <div>ID: {{survey.id}}</div>
 
-        <div class="btn-group">
-            <button class="nes-btn is-error" (click)="back()">Back</button>
-        </div>
+    <div class="btn-group">
+      <button class="nes-btn is-error" (click)="back()">Back</button>
     </div>
+  </div>
 
-    <div class="option-container nes-container with-title">
-        <h4>Questions</h4>
-        <ol>
-            <li *ngFor="let question of survey.questions">
-                <div >
-                    {{question.title}} <br>
-                    {{question.subTitle}}
-                </div>
-
-                <ol>
-                    <li *ngFor="let option of question.options">
-                        <div onclick="selectAnswer()">
-                            {{option.text}} <br>
-                            {{option.description}}
-                        </div>
-                    </li>
-                </ol>
-
-            </li>
-        </ol>
-
-        <div class="btn-group">
-            <button class="nes-btn" (click)="reset()">Reset</button>
-<!--            <button class="nes-btn is-primary "-->
-<!--                    [ngClass]="{'is-disabled': customiseName.trim() == ''}"-->
-<!--                    (click)="save()">Save-->
-<!--            </button>-->
+  <div class="option-container nes-container with-title">
+    <h4>Questions</h4>
+    <ul>
+      <li class="nes-container" *ngFor="let question of survey.questions">
+        <div>
+          {{question.title}} <br>
+          {{question.subTitle}}
         </div>
+
+        <ul>
+          <li class="option-line" *ngFor="let op of question.options">
+            <div (click)="selectAnswer(question.id, op.id)"
+                 [ngClass]="{'is-selected':selectedAnswers.get(question.id) === op.id}">
+
+              {{op.text}} <br>
+              {{op.description}}
+            </div>
+          </li>
+        </ul>
+
+      </li>
+    </ul>
+
+    <div class="btn-group">
+      <button class="nes-btn" (click)="reset()">Reset</button>
+      <button class="nes-btn is-primary "
+              [ngClass]="{'is-disabled': selectedAnswers.size === 0}"
+              (click)="save()">Save
+      </button>
     </div>
+  </div>
 
 </div>
 

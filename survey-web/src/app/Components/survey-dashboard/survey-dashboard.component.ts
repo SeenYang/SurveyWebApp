@@ -2,41 +2,41 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {SurveyService} from '../../Services/survey.service';
 import {Survey} from '../../Models/survey';
-import {Customise} from '../../Models/customise';
+import {Answer} from '../../Models/answer';
 
 @Component({
-    selector: 'app-survey-dashboard',
-    templateUrl: './survey-dashboard.component.html',
-    styleUrls: ['./survey-dashboard.component.css']
+  selector: 'app-survey-dashboard',
+  templateUrl: './survey-dashboard.component.html',
+  styleUrls: ['./survey-dashboard.component.css']
 })
 export class SurveyDashboardComponent implements OnInit {
 
-    constructor(
-        private route: ActivatedRoute,
-        private surveyService: SurveyService,
-    ) {
-    }
+  constructor(
+    private route: ActivatedRoute,
+    private surveyService: SurveyService,
+  ) {
+  }
 
-    characters: Survey[];
-    customises: Customise[];
+  surveys: Survey[];
+  answers: Answer[];
 
 
-    ngOnInit(): void {
-        this.getAllSurveys();
-        // this.getAnswers();
-    }
+  ngOnInit(): void {
+    this.getAllSurveys();
+    this.getAnswers();
+  }
 
-    getAllSurveys() {
-        this.surveyService.getSurveys()
-            .subscribe((result) => {
-                this.characters = result;
-            });
-    }
+  getAllSurveys(): void {
+    this.surveyService.getSurveys()
+      .subscribe((result) => {
+        this.surveys = result;
+      });
+  }
 
-    getAnswers() {
-        this.surveyService.getAllAnswers()
-            .subscribe((result) => {
-                this.customises = result;
-            });
-    }
+  getAnswers(): void {
+    this.surveyService.getAllAnswers()
+      .subscribe((result) => {
+        this.answers = result;
+      });
+  }
 }

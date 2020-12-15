@@ -184,7 +184,7 @@ namespace SurveyApi.Repository
         public async Task<AnswerDto> GetAnswerById(Guid answerId)
         {
             var entity = await _context.Answers
-                .Include(a => a.QuestionAnsers)
+                .Include(a => a.QuestionAnswers)
                 .FirstOrDefaultAsync(a => a.Id == answerId);
             var dto = _map.Map<Answer, AnswerDto>(entity);
 
@@ -198,6 +198,20 @@ namespace SurveyApi.Repository
             await _context.SaveChangesAsync();
             var dto = _map.Map<Answer, AnswerDto>(created.Entity);
             return dto;
+        }
+        
+        /// <summary>
+        ///     Get All answers
+        ///     This method won't return surveys' question
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<AnswerDto>> GetAllAnswers()
+        {
+            var entities = await _context.Answers
+                .Include(a => a.QuestionAnswers)
+                .ToListAsync();
+            var result = _map.Map<List<Answer>, List<AnswerDto>>(entities);
+            return result;
         }
     }
 }

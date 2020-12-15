@@ -10,6 +10,6 @@ namespace SurveyApi.Models.Entities
         public Guid SurveyId { get; set; }
         public DateTime CreatedDateUtc { get; set; }
 
-        public virtual List<QuestionAnswer> QuestionAnsers { get; set; }
+        public virtual List<QuestionAnswer> QuestionAnswers { get; set; }
     }
 }

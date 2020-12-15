@@ -8,34 +8,25 @@ import {MessagesComponent} from './Components/messages/messages.component';
 import {ENV, getEnv} from '../environments/environment.provider';
 import {SurveyDetailComponent} from './Components/survey-detail/survey-detail.component';
 import {SurveyDashboardComponent} from './Components/survey-dashboard/survey-dashboard.component';
-import { CustomiseDetailComponent } from './Components/customise-detail/customise-detail.component';
-import { QuestionComponent } from './components/question/question.component';
+import {AnswerDetailComponent} from './Components/answer-detail/answer-detail.component';
+import {QuestionComponent} from './components/question/question.component';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    // HttpClientInMemoryWebApiModule.forRoot(
-    //   InMemoryDataService, {dataEncapsulation: false}
-    // )
-  ],
-  providers: [
-    {provide: ENV, useFactory: getEnv}
-  ],
   declarations: [
     AppComponent,
     SurveyDetailComponent,
     MessagesComponent,
     SurveyDashboardComponent,
-    CustomiseDetailComponent,
-    QuestionComponent
+    AnswerDetailComponent,
+    QuestionComponent],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
   ],
+  providers: [{provide: ENV, useFactory: getEnv}],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

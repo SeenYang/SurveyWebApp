@@ -1,21 +1,21 @@
-<div class="nes-container is-dark with-title" *ngIf="characters">
-    <p class="title">Character Templates</p>
-    <ol>
-        <li *ngFor="let character of characters">
-            <a class="col-l-4" routerLink="/character/{{character.id}}">
-                <div>{{character.name}} - {{character.description}}</div>
-            </a>
-        </li>
-    </ol>
+<div class="nes-container with-title" *ngIf="surveys">
+  <p class="title">Survey List</p>
+  <ol>
+    <li class="survey-list-container nes-container" *ngFor="let survey of surveys">
+      <a class="col-l-4" routerLink="/survey/{{survey.id}}">
+        <div>{{survey.name}} - {{survey.description}}</div>
+      </a>
+    </li>
+  </ol>
 </div>
 
-<div class="nes-container is-dark with-title" *ngIf="characters">
-    <p class="title">Customise Characters</p>
-    <ol>
-        <li *ngFor="let customise of customises">
-            <a class="col-l-4" routerLink="/customise/{{customise.id}}">
-                <div>Customise: {{customise.name}} - By: {{customise.userName}}</div>
-            </a>
-        </li>
-    </ol>
+<div class="nes-container with-title" *ngIf="answers">
+  <p class="title">Answer List</p>
+  <ol>
+    <li class="survey-list-container nes-container" *ngFor="let answer of answers">
+      <a class="col-l-4" routerLink="/answer/{{answer.id}}">
+        <div>Answer: {{answer.createdDateUtc}} - By: {{answer.userId}}</div>
+      </a>
+    </li>
+  </ol>
 </div>

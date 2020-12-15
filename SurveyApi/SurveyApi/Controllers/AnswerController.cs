@@ -24,6 +24,18 @@ namespace SurveyApi.Controllers
             _service = service;
             _logger = logger;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetAllAnswers")]
+        public async Task<IActionResult> GetAllAnswers()
+        {
+            var result = await _service.GetAllAnswers();
+            return result != null ? (IActionResult) Ok(result) : NoContent();
+        }
+        
 
         /// <summary>
         /// 

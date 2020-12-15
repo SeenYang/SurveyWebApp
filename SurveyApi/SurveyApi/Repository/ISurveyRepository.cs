@@ -28,5 +28,6 @@ namespace SurveyApi.Repository
         // Answers
         Task<AnswerDto> GetAnswerById(Guid answerId);
         Task<AnswerDto> AddAnswer(AnswerDto answer);
+        Task<List<AnswerDto>> GetAllAnswers();
     }
 }

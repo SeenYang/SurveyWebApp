@@ -8,8 +8,8 @@ namespace SurveyApi.Models.Dtos
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
         public Guid SurveyId { get; set; }
-        public DateTime CreatedDateUtc { get; set; }
-        public List<QuestionAnswerDto> QuestionAnsers { get; set; }
+        public DateTime? CreatedDateUtc { get; set; }
+        public List<QuestionAnswerDto> QuestionAnswers { get; set; }
     }
 
     public class QuestionAnswerDto

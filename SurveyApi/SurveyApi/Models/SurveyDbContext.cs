@@ -43,7 +43,7 @@ namespace SurveyApi.Models
                 .HasKey(qa => new {qa.QuestionId, qa.AnswerId});
             modelBuilder.Entity<QuestionAnswer>()
                 .HasOne(qa => qa.Answer)
-                .WithMany(a => a.QuestionAnsers);
+                .WithMany(a => a.QuestionAnswers);
             
             modelBuilder.Entity<User>()
                 .HasKey(u => u.Id);

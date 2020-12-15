@@ -1,5 +1,4 @@
-
-export interface Option{
+export interface Option {
   id: string;
   parentOptionId: string;
   questionId: string;
