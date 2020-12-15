@@ -35,7 +35,7 @@ create/update options of answers.
 
 ## Design:
 
-BE project is a .net 5 web api with ef core in-memory db for poc purpose. FE is pure Angular FE using web api to
+BE project is a `.net 5` web api with `ef core in-memory db` for poc purpose written in C#. FE is pure `Angular` FE using web api to
 communicate with BE.
 
 Both of them could be deployed separately to dockerized management environment, i.e. esc. Sample dockerfiles have
